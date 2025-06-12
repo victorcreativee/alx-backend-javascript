@@ -1,11 +1,19 @@
 function calculateNumber(type, a, b) {
     const aR = Math.round(a);
     const bR = Math.round(b);
-    if (type === 'SUM') return aR + bR;
-    if (type === 'SUBTRACT') return aR - bR;
-    if (type === 'DIVIDE') {
-        if (bR === 0) return 'Error';
-        return aR / bR;
+
+    switch (type) {
+        case 'SUM':
+            return aR + bR;
+        case 'SUBTRACT':
+            return aR - bR;
+        case 'DIVIDE':
+            if (bR === 0) {
+                return 'Error';
+            }
+            return aR / bR;
+        default:
+            throw new Error('Invalid type');
     }
 }
 
