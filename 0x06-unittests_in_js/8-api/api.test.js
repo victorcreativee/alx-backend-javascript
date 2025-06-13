@@ -1,12 +1,26 @@
-const request = require('request');
-const { expect } = require('chai');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('./api');
+const { expect } = chai;
+
+chai.use(chaiHttp);
 
 describe('Index page', () => {
-    it('GET / returns welcome message', (done) => {
-        request.get('http://localhost:7865', (err, res, body) => {
-            expect(res.statusCode).to.equal(200);
-            expect(body).to.equal('Welcome to the payment system');
-            done();
-        });
+    it('should return status 200', (done) => {
+        chai.request(app)
+            .get('/')
+            .end((err, res) => {
+                expect(res.status).to.equal(200);
+                done();
+            });
+    });
+
+    it('should return welcome message', (done) => {
+        chai.request(app)
+            .get('/')
+            .end((err, res) => {
+                expect(res.text).to.equal('Welcome to the payment system');
+                done();
+            });
     });
 });
