@@ -1,19 +1,15 @@
 function calculateNumber(type, a, b) {
-    const valA = Math.round(a);
-    const valB = Math.round(b);
-    if (type === 'SUM') {
-        return valA + valB;
-    }
-    else if (type === 'SUBTRACT') {
-        return valA - valB;
-    }
-    else if (type === 'DIVIDE') {
-        if (valB === 0) {
-            return "Error";
-        }
-        else {
-            return valA / valB;
-        }
+    const aR = Math.round(a);
+    const bR = Math.round(b);
+
+    switch (type) {
+        case 'SUM':
+            return aR + bR;
+        case 'SUBTRACT':
+            return aR - bR;
+        case 'DIVIDE':
+            if (bR === 0) return 'Error';
+            return aR / bR;
     }
 }
 
